@@ -59,24 +59,32 @@ namespace WindForms_ConversionMonedas
             }
         }*/
 
-        private Boolean hayMonedasSeleccionadas()
+        
+
+        private void eventoAceptar(object sender, EventArgs e)
         {
-            if (checkedListBoxMonedas.Items.Count == 0)
+            if (checkedListBoxMonedas.SelectedItems.Count!= 0)
             {
-                return false;
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             else
             {
-                return true;
+                MessageBox.Show("No has seleccionado ninguna moneda a la que se hara conversion","Seleccionar monedas");
             }
             
         }
 
-        private void eventoAceptar(object sender, EventArgs e)
+        public List<String> obtenerMonedasSeleccionadas()
         {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            List<String> monedasSeleccionadas = new List<string>();
+            foreach(String moneda in checkedListBoxMonedas.CheckedItems)
+            {
+                monedasSeleccionadas.Add(moneda);
+            }
+            return monedasSeleccionadas;
         }
+
 
         private void eventoCancelar(object sender, EventArgs e)
         {

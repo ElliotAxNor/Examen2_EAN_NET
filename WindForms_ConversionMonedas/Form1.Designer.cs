@@ -33,6 +33,7 @@
             this.comboBoxMonedas = new System.Windows.Forms.ComboBox();
             this.textBoxMonto = new System.Windows.Forms.TextBox();
             this.btnCalcular = new System.Windows.Forms.Button();
+            this.groupBoxConversiones = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
             // 
             // labelMoneda
@@ -85,11 +86,21 @@
             this.btnCalcular.UseVisualStyleBackColor = true;
             this.btnCalcular.Click += new System.EventHandler(this.eventoCalcular);
             // 
+            // groupBoxConversiones
+            // 
+            this.groupBoxConversiones.Location = new System.Drawing.Point(26, 146);
+            this.groupBoxConversiones.Name = "groupBoxConversiones";
+            this.groupBoxConversiones.Size = new System.Drawing.Size(354, 297);
+            this.groupBoxConversiones.TabIndex = 5;
+            this.groupBoxConversiones.TabStop = false;
+            this.groupBoxConversiones.Text = "Conversiones";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(392, 450);
+            this.ClientSize = new System.Drawing.Size(407, 466);
+            this.Controls.Add(this.groupBoxConversiones);
             this.Controls.Add(this.btnCalcular);
             this.Controls.Add(this.textBoxMonto);
             this.Controls.Add(this.comboBoxMonedas);
@@ -109,6 +120,7 @@
         private System.Windows.Forms.ComboBox comboBoxMonedas;
         private System.Windows.Forms.TextBox textBoxMonto;
         private System.Windows.Forms.Button btnCalcular;
+        private System.Windows.Forms.GroupBox groupBoxConversiones;
     }
 }
 
