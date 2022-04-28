@@ -17,6 +17,7 @@ namespace WindForms_ConversionMonedas
             InitializeComponent();
         }
 
+        //Metodo que inserta las opciones dentro del checkedListBox excepto la moneda pasada como parametro
         public void insertarOpciones(String monedaSeleccionada)
         {
             if (monedaSeleccionada != "USD - Dolar estadounidense") 
@@ -45,36 +46,26 @@ namespace WindForms_ConversionMonedas
             }
         }
 
-        
-
-        /*public List<String> obtenerMonedasAcalcular()
-        {
-            if (hayMonedasSeleccionadas())
-            {
-                //return checkedListBoxMonedas.Items.ToString;
-            }
-            else
-            {
-                return null;
-            }
-        }*/
-
-        
-
+        //Evento que se realizara al pulsar el boton aceptar
         private void eventoAceptar(object sender, EventArgs e)
         {
+            //Si se tiene seleccionada alguna moneda
             if (checkedListBoxMonedas.SelectedItems.Count!= 0)
             {
+                //Regresamos de estatus ok
                 this.DialogResult = DialogResult.OK;
+                //Cerramos el form
                 this.Close();
             }
-            else
+            else //Si no
             {
+                //  Mostramos mensaje indicandolo
                 MessageBox.Show("No has seleccionado ninguna moneda a la que se hara conversion","Seleccionar monedas");
             }
             
         }
 
+        //Metodo que regresa una lista con las monedas seleccionadas en el checkedListBox
         public List<String> obtenerMonedasSeleccionadas()
         {
             List<String> monedasSeleccionadas = new List<string>();

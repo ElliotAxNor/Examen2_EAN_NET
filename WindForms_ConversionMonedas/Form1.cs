@@ -17,36 +17,49 @@ namespace WindForms_ConversionMonedas
         {
             InitializeComponent();
         }
-
+        //Evento al hacer click al boton calcular
         private void eventoCalcular(object sender, EventArgs e)
         {
-            
+            //Si los campos de moneda y monto estan correctos
             if (comprobarDatos())
             {
+                //Extraemos la moneda seleccionada
                 String monedaSeleccionada = comboBoxMonedas.Text;
+                //Extraemos el monto
                 int monto = int.Parse(textBoxMonto.Text);
                 Form2 form2 = new Form2();
+                //Insertamos las opciones que tendra el checkedListBox
                 form2.insertarOpciones(monedaSeleccionada);
+                //Si se recibe Ok del form 2 significa que el usuario dio en el boton aceptar
                 if(form2.ShowDialog()==DialogResult.OK)
                 {
                     //Vaciamos el contenido de la seccion conversiones
                     groupBoxConversiones.Controls.Clear();
+                    //Variable que se ira sumando a medida que insertemos label y textBox
                     int ejeY = 30;
+                    //Extraemos las monedas seleccionadas y las inspeccionamos 
                     foreach (String moneda in form2.obtenerMonedasSeleccionadas())
                     {
+                        //Creamos textBox que tendra la conversion
                         TextBox textBoxConversion = new TextBox();
+                        //Situamos 
                         textBoxConversion.Location = new Point(150,ejeY);
                         
+                        //Label de la moneda
                         Label labelMoneda = new Label();
                         labelMoneda.AutoSize = true;
+                        //Situamos
                         labelMoneda.Location = new Point(5, ejeY);
-                        
+                        //Ingresamos en el textBox dentro el signo y la conversion de la moneda
                         textBoxConversion.Text = determinarSigno(moneda)+" "+conversionMoneda(monedaSeleccionada,moneda,monto);
+                        //Ingresamos en el label la moneda
                         labelMoneda.Text = moneda;
 
+                        //Agregamos los elementos dentro de la seccion de converisones
                         groupBoxConversiones.Controls.Add(labelMoneda);
                         groupBoxConversiones.Controls.Add(textBoxConversion);
                         
+                        //Sumamos variable
                         ejeY += 50;
 
                     }
@@ -54,7 +67,7 @@ namespace WindForms_ConversionMonedas
             }
         }
 
-
+        //Metodo que regresa el signo dependiendo de la moneda pasada como parametro
         private String determinarSigno(String moneda)
         {
             if (moneda == "USD - Dolar estadounidense" || moneda == "MXN - Peso mexicano" || moneda == "CAD - Dolar canadiense")
@@ -71,7 +84,8 @@ namespace WindForms_ConversionMonedas
                 return "¥";
             }
         }
-
+        
+        //Metodo que regresa la conversion de la moneda
         private double conversionMoneda(String moneda, String monedaAconvertir, int monto)
         {
            
@@ -100,7 +114,8 @@ namespace WindForms_ConversionMonedas
                 return convertirMonedaJPY(monedaAconvertir,monto);
             }
         }
-
+        
+        
         private double convertirMonedaUSD(String monedaAconvertir, int monto)
         {
             if (monedaAconvertir == "MXN - Peso mexicano")
@@ -216,11 +231,8 @@ namespace WindForms_ConversionMonedas
             }
         }
 
-        private void vaciarSeccionConversiones()
-        {
-            
-        }
-
+       
+        //Metodo que comprueba los campos de moneda seleccionada y monto
         private Boolean comprobarDatos()
         {
             try
